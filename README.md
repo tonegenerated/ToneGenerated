@@ -1,5 +1,4 @@
-**ToneGenerated** is a blog devoted to audio programming.
-
+**ToneGenerated** is a blog devoted to audio programming, it is located at
 <http://tonegenerated.wordpress.com/>
 
 **ToneGenerated** is a blog for computer audio enthusiasts, which explores the
@@ -14,11 +13,10 @@ audience, and should only require small changes to run on Windows, Mac,
 smartphones, tablets and microcontrollers.
 
 Most of the code is in the
-[C programming language](http://en.wikipedia.org/wiki/C_(programming_language)),
+[C programming language](http://en.wikipedia.org/wiki/C_(programming_language),
 both for the speed of the binaries it generates, and its availability on
 most platforms...but the code is written to be easily ported to other languages.
-ToneGenerated's mantra is: keep it simple and portable (read: small and well
-documented.)
+ToneGenerated's mantra is: *keep it simple, portable and well documented*.
 
 The [Python programming language](http://www.python.org/) is used for
 prototyping, scripting and some visualization routines.
@@ -27,9 +25,9 @@ A few of the projects use the
 [Simple DirectMedia Layer(SDL)](http://www.libsdl.org/) cross-platform
 multimedia libraries, but none of the techniques explored rely on its
 availability on the system you're developing for. As long as you can get
-the system to output PCM samples--or even just play
-[WAV](http://en.wikipedia.org/wiki/WAV) files--much of the code explored
-will be applicable.
+the system to output [PCM](http://en.wikipedia.org/wiki/PCM)
+samples--or even just play [WAV](http://en.wikipedia.org/wiki/WAV) files--
+much of the code explored will be applicable.
 
 **ToneGenerated** explores:
 
@@ -40,6 +38,7 @@ will be applicable.
 *  sequencing
 *  instruments and envelopes
 *  sound effects
+*  compression
 *  ffts and spectrum analysis
 *  speech synthesis
 *  voiceprints
