@@ -52,7 +52,7 @@ def gen_square_wave(sample_rate=44100, frequency=440, duration=1000, amplitude=0
             sample = -sample
 
         # Output the sample value to stdout as a little-endian 16bit integer
-        sys.stdout.write(struct.pack('<l', sample))
+        sys.stdout.write(struct.pack('<h', sample))
 
 
 if __name__ == '__main__':
