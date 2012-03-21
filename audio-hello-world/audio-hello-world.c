@@ -11,7 +11,7 @@ the sampling rate.
 @file		audio-hello-world.c
 @author		ToneGenerated
 @contact	JonRuttan@gmail.com
-@copyright	Copyright (C) 2012 Jon Ruttan
+@copyright  Copyright (C) 2012 Jon Ruttan
 @license	Apache License, Version 2.0
 @version	0.1.0
 @date		2012-03-18
@@ -19,7 +19,6 @@ the sampling rate.
 
 #include <stdio.h>
 #include <stdlib.h>
-
 
 int gen_square_wave(int sample_rate, int frequency, int duration, float amplitude)
 {
@@ -29,7 +28,8 @@ int gen_square_wave(int sample_rate, int frequency, int duration, float amplitud
 
 		Parameters:
 
-		- `sample_rate`: The audio hardware's sampling rate in Hz (samples/sec.)
+		- `sample_rate`: The audio hardware's sampling rate in Hz
+			(samples/sec.)
 		- `frequency`: The square wave frequency in Hz (cycles/sec.)
 		- `duration`: The duration of the square wave tone in ms.
 		- `amplitude`: The amplitude of the square wave represented as a
@@ -45,7 +45,7 @@ int gen_square_wave(int sample_rate, int frequency, int duration, float amplitud
 	int tone_midpoint = sample_rate / frequency / 2;
 
 	// Calculate the maximum (negative) sample value.
-	int16_t sample = -(1 << (16 - 1)) * amplitude;
+	int sample = -(1 << (16 - 1)) * amplitude;
 
 	// Iterate over the range of samples we've calculated are required.
 	int i;
@@ -58,7 +58,7 @@ int gen_square_wave(int sample_rate, int frequency, int duration, float amplitud
 			sample = -sample;
 
 		// Output the sample value to stdout as a little-endian 16bit integer
-		printf("%c%c", sample & 0xff, (sample & 0xff00) >> 8);
+		printf("%c%c", sample & 0xff, (sample >> 8) & 0xff);
 	}
 
 	return 0;
