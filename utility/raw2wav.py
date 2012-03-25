@@ -17,7 +17,6 @@ __date__ = '2012-03-25'
 
 import struct
 import sys
-import argparse
 
 class RawToWav:
     '''
@@ -194,6 +193,10 @@ class RawToWav:
 
 
 if __name__ == '__main__':
+
+    # Import the argument parser
+    import argparse
+
     # Create a command line argument parser
     parser = argparse.ArgumentParser(
             description='''Converts raw PCM FILE(s), or standard input, to OUTFILE file in WAV format.''',
