@@ -37,7 +37,7 @@ from math import *
 class Waveform:
     def __init__(self):
         '''
-        Creates new waveform object.
+        Creates a new waveform object.
         '''
         self.sample_rate = None
 
@@ -60,7 +60,7 @@ class Waveform:
 
         Returns a floating point value between 0.0 and 1.0.
         '''
-        return sin(2 * pi * time)
+        return sin(2.0 * pi * time)
 
     @staticmethod
     def triangle(time):
@@ -72,7 +72,7 @@ class Waveform:
 
         Returns a floating point value between 0.0 and 1.0.
         '''
-        return (time - 2 * floor((time + 1) /2)) * pow(-1, floor((time + 1) /2))
+        return 4.0 * (time - floor(time + 0.5)) * pow(-1, floor(time + 0.5)) - 1.0
 
     @staticmethod
     def sawtooth(time):
@@ -84,7 +84,7 @@ class Waveform:
 
         Returns a floating point value between 0.0 and 1.0.
         '''
-        return 2 * (time - floor(time)) - 1
+        return 2.0 * (time - floor(time)) - 1.0
 
     @staticmethod
     def square(time, duty=0.5):
