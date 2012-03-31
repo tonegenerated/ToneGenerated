@@ -26,8 +26,8 @@ __author__ = "ToneGenerated"
 __contact__ = "JonRuttan@gmail.com"
 __copyright__ = "Copyright (C) 2012 Jonathan Ruttan"
 __license__ = "Apache License, Version 2.0"
-__version__ = "0.1.1"
-__date__ = '2012-03-25'
+__version__ = "0.1.2"
+__date__ = '2012-03-31'
 
 import struct
 import sys
@@ -210,10 +210,17 @@ if __name__ == '__main__':
     # Import the argument parser
     import argparse
 
+    # New class with multiple base classes to use as argparse formatter
+    class RawDescriptionArgumentsDefaultsHelpFormatter(
+            argparse.RawDescriptionHelpFormatter,
+            argparse.ArgumentDefaultsHelpFormatter
+        ):
+        pass
+
     # Create a command line argument parser
     parser = argparse.ArgumentParser(
             description='''Converts raw PCM FILE(s), or standard input, to OUTFILE file in WAV format.''',
-            formatter_class=argparse.RawDescriptionHelpFormatter,
+            formatter_class=RawDescriptionArgumentsDefaultsHelpFormatter,
             epilog='''With no INFILE, or when INFILE is -, read standard input.
 
 Recognized sample formats are: %s
