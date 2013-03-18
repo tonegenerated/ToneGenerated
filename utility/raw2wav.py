@@ -32,6 +32,7 @@ __date__ = '2012-03-31'
 import struct
 import sys
 
+
 class RawToWav:
     '''
     RawToWav([outfile=None, frame_rate=44100, channels=2, format='S16']) -> converter object
@@ -57,6 +58,7 @@ class RawToWav:
         2: 'Stereo',
         4: '4 Channel',
     }
+
     def __init__(self):
         '''
         Initializes converter object.
@@ -154,7 +156,7 @@ class RawToWav:
         '''
 
         # If the outfile is valid, cycle indefinitely
-        while self.outfile != None:
+        while self.outfile is not None:
             # Simple version, copy a frame from the input to the output
             frame = file.read(self.frame_bytes)
             if not len(frame):
@@ -214,21 +216,21 @@ if __name__ == '__main__':
     class RawDescriptionArgumentsDefaultsHelpFormatter(
             argparse.RawDescriptionHelpFormatter,
             argparse.ArgumentDefaultsHelpFormatter
-        ):
+    ):
         pass
 
     # Create a command line argument parser
     parser = argparse.ArgumentParser(
-            description='''Converts raw PCM FILE(s), or standard input, to OUTFILE file in WAV format.''',
-            formatter_class=RawDescriptionArgumentsDefaultsHelpFormatter,
-            epilog='''With no INFILE, or when INFILE is -, read standard input.
+        description='''Converts raw PCM FILE(s), or standard input, to OUTFILE file in WAV format.''',
+        formatter_class=RawDescriptionArgumentsDefaultsHelpFormatter,
+        epilog='''With no INFILE, or when INFILE is -, read standard input.
 
 Recognized sample formats are: %s
 The available format shortcuts are:
 -f cd (16 bit little endian, 44100, stereo)
 -f dat (16 bit little endian, 48000, stereo)
             ''' % ' '.join(sorted(RawToWav.formats.keys()))
-        )
+    )
     # Outfile argument - takes one filename
     parser.add_argument('outfile', metavar='OUTFILE', type=str,
                         help='output file')
@@ -255,18 +257,23 @@ The available format shortcuts are:
                         help='quiet mode')
 
     # Version flag, outputs version information
-    parser.add_argument('-V', '--version', action='version',
-                       version='%s: version %s by %s <%s>' % \
-                               (sys.argv[0], __version__, __author__, __contact__),
-                       help='print current version')
+    parser.add_argument(
+        '-V', '--version', action='version',
+        version='%s: version %s by %s <%s>' % (
+            sys.argv[0], __version__, __author__, __contact__
+        ),
+        help='print current version'
+    )
 
     # Parse the supplied command line options
     args = parser.parse_args()
 
     # Filter the command line options that are to be parameters to the converter
     # object and store them in a dictionary
-    params = { filtered_keys: vars(args)[filtered_keys] for filtered_keys in
-            ('outfile', 'frame_rate', 'channels', 'format') }
+    params = {
+        filtered_keys: vars(args)[filtered_keys] for filtered_keys in
+        ('outfile', 'frame_rate', 'channels', 'format')
+    }
 
     # Parse the parameter dictionary to ensure the values supplied are valid
     params = RawToWav.parse_args(params)
@@ -283,11 +290,12 @@ The available format shortcuts are:
 
     # Give some feedback to the user, unless quiet mode is on
     if not args.quiet:
-        print "Creating '%s': %s, Rate %d Hz, %s" % (params['outfile'],
-                RawToWav.formats[params['format']]['label'],
-                args.frame_rate,
-                RawToWav.channels[params['channels']],
-            )
+        print "Creating '%s': %s, Rate %d Hz, %s" % (
+            params['outfile'],
+            RawToWav.formats[params['format']]['label'],
+            args.frame_rate,
+            RawToWav.channels[params['channels']],
+        )
 
     # Create the converter object with the parameters supplied
     converter = RawToWav().open(**params)
