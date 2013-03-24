@@ -37,6 +37,7 @@ __date__ = '2012-03-18'
 import struct
 import sys
 
+
 def gen_square_wave(sample_rate=44100, frequency=440, duration=1000, amplitude=0.3):
     """Given the input parameters generates square waves and outputs them
     to stdout.
